@@ -43,3 +43,39 @@ const renderIntern = intern => {
     console.log(internHtml)
 };
 
+function createManager(name, id, email, officeNumber) {
+    const manager = new Manager(name, id, email, officeNumber)
+    renderManager(manager)
+}
+
+function createEngineer(name, id, email, github) {
+    const engineer = new Engineer(name, id, email, github)
+    renderEngineer(engineer)
+}
+
+function createIntern(name, id, email, school) {
+    const intern = new Intern(name, id, email, school)
+    renderIntern(intern)
+}
+
+function renderMain() {
+    let mainTemplate = fs.readFileSync(path.resolve(templateDir, "main.html"), "utf8")
+    var mainHtml = ""
+    mainHtml = mainHtml + mainTemplate.replace(/{{ team }}/g, teamMembers)
+    let file = path.join(__dirname, 'output', "/index.html");
+    console.log(file);
+    fs.writeFile(file, mainHtml, function (err) {
+        if (err) {
+            throw new Error(err)
+        }
+        console.log('done writing file')
+    })
+}
+
+module.exports = {
+    createManager: createManager,
+    createEngineer: createEngineer,
+    createIntern: createIntern,
+    renderMain: renderMain
+}
+
