@@ -18,3 +18,28 @@ const renderManager = manager => {
     teamMembers = teamMembers + managerHtml;
     console.log(managerHtml)
 };
+
+const renderEngineer = engineer => {
+    let template = fs.readFileSync(path.resolve(templateDir, "engineer.html"), "utf8");
+    var engineerHtml = ""
+    engineerHtml = engineerHtml + template.replace(/{{ name }}/g, engineer.getName())
+        .replace(/{{ role }}/g, engineer.getRole())
+        .replace(/{{ email }}/g, engineer.getEmail())
+        .replace(/{{ id }}/g, engineer.getId())
+        .replace(/{{ github }}/g, engineer.getGithub())
+    teamMembers = teamMembers + engineerHtml;
+    console.log(engineerHtml)
+};
+
+const renderIntern = intern => {
+    let template = fs.readFileSync(path.resolve(templateDir, "intern.html"), "utf8");
+    var internHtml = ""
+    internHtml = internHtml + template.replace(/{{ name }}/g, intern.getName())
+        .replace(/{{ role }}/g, intern.getRole())
+        .replace(/{{ email }}/g, intern.getEmail())
+        .replace(/{{ id }}/g, intern.getId())
+        .replace(/{{ school }}/g, intern.getSchool())
+    teamMembers = teamMembers + internHtml;
+    console.log(internHtml)
+};
+
