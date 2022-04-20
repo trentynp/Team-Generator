@@ -76,3 +76,27 @@ function askQuestions() {
             })
 
 }
+
+function addOtherMembers() {
+    inquirer.prompt({
+        type: "confirm",
+        message: "Add other Team Members?",
+        name: "addOtherMembers"
+    }).then(
+        function ({ addOtherMembers }) {
+            console.log("add other members", addOtherMembers)
+            if (addOtherMembers) {
+                askQuestions()
+            } else {
+                renderHTML()
+            }
+        }
+    )
+        .catch(err => {
+            console.log("Error adding other members", err)
+            throw err
+        })
+}
+
+
+askQuestions()
